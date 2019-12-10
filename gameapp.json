@@ -1,0 +1,8 @@
+{
+    "tournaments":[
+        { "id":1, "name":"Cager Classic"} ,
+        { "id":2, "name":"Summer Showdown"} ,
+        { "id":3, "name":"March Madness Tournament"} ,
+        { "id":4, "name":"Holiday Hoops Challenge"} 
+    ]
+}
