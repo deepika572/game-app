@@ -27,4 +27,8 @@ export class GameapiProvider {
         return this.currentTourney;
       });
   }
+
+  getCurrentTourney() {
+    return this.currentTourney;
+  }
 }

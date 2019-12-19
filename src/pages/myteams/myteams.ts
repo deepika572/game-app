@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TournamentsPage } from '../tournaments/tournaments';
 import { MapPage } from '../map/map';
+import { TeamHomePage } from '../team-home/team-home';
+import { GameapiProvider } from '../../providers/gameapi/gameapi';
+import { UserSettingsProvider } from '../../providers/user-settings/user-settings';
 
 @IonicPage()
 @Component({
@@ -10,28 +13,45 @@ import { MapPage } from '../map/map';
 })
 export class MyteamsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public favourites = [];
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public gameapi: GameapiProvider,
+    public loading: LoadingController,
+    public usersettingsapi: UserSettingsProvider) {
   }
-  gotoTournaments(){
+  favoriteTapped($event, favorite) {
+    let loader = this.loading.create({
+      content: 'Getting data...',
+      dismissOnPageChange: true
+    });
+    loader.present();
+    this.gameapi.getTournamentsData(favorite.tournamentId)
+      .subscribe(t => this.navCtrl.push(TeamHomePage, favorite.team));
+  }
+  gotoTournaments() {
     this.navCtrl.push(TournamentsPage);
   }
 
-  goToMap(){
+  ionViewDidEnter() {
+    this.favourites = this.usersettingsapi.getFavouriteTeam();
+  }
+  goToMap() {
     this.navCtrl.push(MapPage)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyteamsPage');
   }
-  ionViewWillUnload(){
+  ionViewWillUnload() {
     console.log('unload Myteampage')
   }
-  ionViewCanLeave(){
+  ionViewCanLeave() {
     console.log('canleave Myteampage')
   }
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     console.log('willleave Myteampage')
   }
-  ionViewDidLeave(){
+  ionViewDidLeave() {
     console.log('didleave Myteampage')
   }
 }

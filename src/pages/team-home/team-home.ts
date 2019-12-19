@@ -12,18 +12,18 @@ import { GameapiProvider } from '../../providers/gameapi/gameapi';
   templateUrl: 'team-home.html',
 })
 export class TeamHomePage {
-  public team : any = {}; 
+  public team: any = {};
   public teamDetailTab = TeamDetailPage;
   public standingTab = StandingsPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public gameapi : GameapiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public gameapi: GameapiProvider) {
     this.team = this.navParams.data;
   }
 
-  goToHome(){
+  goToHome() {
     this.navCtrl.push(MyteamsPage)
   }
   ionViewDidLoad() {
-  
+
   }
 
 }

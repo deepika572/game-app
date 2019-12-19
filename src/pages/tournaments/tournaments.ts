@@ -3,27 +3,20 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { TeamsPage } from '../teams/teams';
 import { GameapiProvider } from '../../providers/gameapi/gameapi';
 
-/**
- * Generated class for the TournamentsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-tournaments',
   templateUrl: 'tournaments.html',
 })
 export class TournamentsPage {
-   public tournaments : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public gameapi: GameapiProvider,
-    public loading : LoadingController) {
+  public tournaments: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public gameapi: GameapiProvider,
+    public loading: LoadingController) {
   }
 
   ionViewDidLoad() {
     let loader = this.loading.create({
-      content : "Getting Tournaments......"
+      content: "Getting Tournaments......"
     })
     loader.present().then(() => {
       this.gameapi.getTournaments().then(data => this.tournaments = data);
@@ -31,10 +24,10 @@ export class TournamentsPage {
     })
     console.log('ionViewDidLoad TournamentsPage');
   }
-  itemTapped($event,team){
-    this.navCtrl.push(TeamsPage,team)
+  itemTapped($event, team) {
+    this.navCtrl.push(TeamsPage, team)
   }
-  ionViewWillUnload(){
+  ionViewWillUnload() {
     console.log('unload tournamentpage')
   }
   // ionViewCanEnter(){
