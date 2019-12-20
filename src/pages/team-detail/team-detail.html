@@ -7,6 +7,9 @@
 <ion-content>
   <!-- <h2>Team Detail</h2>
  <h2>Name : {{team.name}}</h2> -->
+ <ion-refresher (ionRefresh)="refreshAll($event)">
+   <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-card-content>
       <ion-row>

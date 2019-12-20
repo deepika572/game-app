@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { GameapiProvider } from '../../providers/gameapi/gameapi';
 
 /**
  * Generated class for the MapPage page.
@@ -17,18 +18,22 @@ import { Platform } from 'ionic-angular';
 export class MapPage {
   
   public map : any = {}
-  title: string = 'My first AGM project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
-  height = 0;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  constructor(public gameapi: GameapiProvider, public navParams: NavParams, public platform: Platform) {
     
-    console.log(platform.height());
-    this.height = platform.height() - 56;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
+    let games = this.navParams.data;
+    let tourneyData = this.gameapi.getCurrentTourney();
+    let location = tourneyData.locations[games.locationId];
+
+    this.map = {
+      lnt : location.latitude,
+      lng : location.longitude,
+      zoom : 12,
+      markerLabel : games.location
+    };
   }
 
 }

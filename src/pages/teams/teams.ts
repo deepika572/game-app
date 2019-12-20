@@ -13,6 +13,7 @@ export class TeamsPage {
   teams: any[];
   allTeams: any;
   allTeamsDivisions: any;
+  queryText: string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public gameapi: GameapiProvider,
@@ -34,13 +35,28 @@ export class TeamsPage {
           .value();
         this.teams = this.allTeamsDivisions;
         console.log('division teams', this.teams)
+        console.log(this.allTeams);
         loader.dismiss();
       });
     })
-
+   // this.filterFunction();
+    console.log(this.teams)
   }
 
   itemTapped($event, team) {
     this.navCtrl.push(TeamHomePage, team)
+  }
+
+  updateTeams(){
+    let queryTextLower = this.queryText.toLowerCase();
+    let filteredTeams = [];
+    _.forEach(this.allTeamsDivisions, td => {
+      let teams = _.filter(td.divisionTeams, t => (<any>t).name.toLowerCase().includes(queryTextLower));
+      if (teams.length) {
+        filteredTeams.push({ divisionName: td.divisionName, divisionTeams: teams });
+      }
+    });
+
+    this.teams = filteredTeams;
   }
 }

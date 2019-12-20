@@ -6,7 +6,6 @@ import { MyteamsPage } from '../pages/myteams/myteams';
 import { TournamentsPage } from '../pages/tournaments/tournaments';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 import { GameapiProvider } from '../providers/gameapi/gameapi';
-import { TeamDetailPage } from '../pages/team-detail/team-detail';
 import { TeamHomePage } from '../pages/team-home/team-home';
 
 @Component({
@@ -26,6 +25,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.getFavouriteTeams();
+      this.events.subscribe('favorite:changed',() =>this.getFavouriteTeams())
       console.log(this.getFavouriteTeams())
 
     });
@@ -42,7 +42,7 @@ export class MyApp {
   }
   goToTeam(item) {
     this.gameapi.getTournamentsData(item.tournamentId).subscribe(data => {
-      this.nav.push(TeamHomePage, data);
+      this.nav.push(TeamHomePage, data.team);
     })
   }
 }

@@ -31,4 +31,7 @@ export class GameapiProvider {
   getCurrentTourney() {
     return this.currentTourney;
   }
+  refreshCurrentTourney(){
+    
+  }
 }

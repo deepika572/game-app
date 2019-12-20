@@ -6,7 +6,12 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Standings</ion-title>
+   <ion-toolbar>
+     <ion-segment color="secondary" [(ngModel)]="divisionFilter" (ionChange)="filterFunc($event)">
+       <ion-segment-button value="division">Division</ion-segment-button>
+       <ion-segment-button value="all">All</ion-segment-button>
+     </ion-segment>
+   </ion-toolbar>
   </ion-navbar>
 </ion-header>
 

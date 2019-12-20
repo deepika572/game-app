@@ -124,5 +124,11 @@ export class TeamDetailPage {
     }
 
   }
+  // refreshAll(refresher){
+  //  this.gameapi.refreshCurrentTourney().subscribe(()=>{
+  //    refresher.complete();
+  //    this.ionViewDidLoad();
+  //  })
+  // }
 }
 
