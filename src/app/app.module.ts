@@ -52,8 +52,7 @@ import { UserSettingsProvider } from '../providers/user-settings/user-settings';
     TournamentsPage,
     StandingsPage,
     TeamHomePage,
-    MapPage,
-    GamePage
+    MapPage
   ],
   providers: [
     StatusBar,
